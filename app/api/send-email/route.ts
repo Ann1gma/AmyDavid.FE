@@ -1,8 +1,6 @@
 import { TGuest } from "@/components/OsaForm";
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
 	try {
@@ -18,9 +16,19 @@ export async function POST(req: Request) {
 			)
 			.join("");
 
-		const { error } = await resend.emails.send({
-			from: "Bröllopsformulär <onboarding@resend.dev>",
-			to: `${process.env.NEXT_PUBLIC_EMAIL}`,
+		const transporter = nodemailer.createTransport({
+			host: "in-v3.mailjet.com",
+			port: 587,
+			secure: false,
+			auth: {
+				user: process.env.MJ_APIKEY_PUBLIC,
+				pass: process.env.MJ_APIKEY_PRIVATE,
+			},
+		});
+
+		await transporter.sendMail({
+			from: `"Bröllopsformulär" <ann_136@hotmail.com>`,
+			to: "amynilsson93@gmail.com",
 			subject: "Ny anmälan till bröllopet",
 			html: `
         <h2>Ny anmälan</h2>
@@ -28,9 +36,10 @@ export async function POST(req: Request) {
       `,
 		});
 
-		if (error) return NextResponse.json({ error }, { status: 500 });
-		return NextResponse.json({ success: true });
-	} catch (error) {
-		return NextResponse.json({ error }, { status: 500 });
+		return NextResponse.json({ success: true }, { status: 200 });
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	} catch (error: any) {
+		console.error("Mail Error => ", error);
+		return NextResponse.json({ error: error.message }, { status: 500 });
 	}
 }
