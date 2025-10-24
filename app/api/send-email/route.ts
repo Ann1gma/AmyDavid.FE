@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
 		await transporter.sendMail({
 			from: `"Bröllopsformulär" <ann_136@hotmail.com>`,
-			to: "amynilsson93@gmail.com",
+			to: `${process.env.OSA_EMAIL}`,
 			subject: "Ny anmälan till bröllopet",
 			html: `
         <h2>Ny anmälan</h2>
