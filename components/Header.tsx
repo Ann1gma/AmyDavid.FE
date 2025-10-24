@@ -7,10 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const navItems = [
-	{ label: "Home", href: "/" },
 	{ label: "OSA", href: "/osaPage" },
-	/* { label: "Services", href: "/services" },
-	{ label: "Contact", href: "/contact" }, */
+	{ label: "Om oss", href: "/aboutUsPage" },
+	{ label: "Start", href: "/" },
 ];
 
 const Header = () => {
