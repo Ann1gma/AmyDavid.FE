@@ -22,5 +22,32 @@
 body {
 	background: var(--background);
 	color: var(--foreground);
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-cormorant-garmond);
+}
+
+h1 {
+	font-size: 52px;
+	font-weight: 600;
+}
+
+h2 {
+	font-size: 40px;
+	font-style: italic;
+}
+
+h3 {
+	font-size: 36px;
+	font-weight: 500;
+}
+
+h4 {
+	font-size: 30px;
+}
+
+p {
+	font-size: 26px;
+}
+
+label {
+	font-size: 26px;
 }

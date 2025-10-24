@@ -1,16 +1,17 @@
+import OsaForm from "@/components/OsaForm";
 import NavButton from "@/components/NavButton";
-import { TStartPage } from "@/types/startPage";
+import { TOsa } from "@/types/osa";
 import Image from "next/image";
 
-export default async function Home() {
+export default async function OsaPage() {
 	const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-	const res = await fetch(`${baseUrl}/api/startPage`, {
+	const res = await fetch(`${baseUrl}/api/osa`, {
 		cache: "no-store",
 	});
 
 	if (!res.ok) throw new Error("Failed to fetch start page");
 
-	const { data }: { data: TStartPage } = await res.json();
+	const { data }: { data: TOsa } = await res.json();
 
 	console.log("data: ", data);
 
@@ -19,11 +20,11 @@ export default async function Home() {
 			{data && (
 				<main className="max-w-4xl ">
 					<div className="my-4 text-center">
-						<h1>{data.data.startPageTitle}</h1>
-						<h2>{data.data.startPageSubTitle}</h2>
+						<h1>{data.data.OsaTitle}</h1>
+						<h2>{data.data.OsaSubTitle}</h2>
 					</div>
 					<div className="my-10 mx-8">
-						{data.data.startPagePosts?.map((post, index) => (
+						{data.data.OsaPosts?.map((post, index) => (
 							<div key={index} className="mb-20">
 								{post.blockTitle && <h3>{post.blockTitle}</h3>}
 								{post.blockSubtitle && <h4>{post.blockSubtitle}</h4>}
@@ -38,7 +39,7 @@ export default async function Home() {
 										/>
 									)}
 								</div>
-								<div className="flex justify-center my-10">
+								<div className="flex justify-center my-4">
 									{post.linkBtn && post.linkBtnText && (
 										<NavButton text={post.linkBtnText} url={post.linkBtn} />
 									)}
@@ -46,6 +47,7 @@ export default async function Home() {
 							</div>
 						))}
 					</div>
+					<OsaForm />
 				</main>
 			)}
 		</div>
