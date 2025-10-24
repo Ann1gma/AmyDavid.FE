@@ -8,6 +8,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const navItems = [
 	{ label: "OSA", href: "/osaPage" },
+	{ label: "Info", href: "/infoPage" },
 	{ label: "Om oss", href: "/aboutUsPage" },
 	{ label: "Start", href: "/" },
 ];
