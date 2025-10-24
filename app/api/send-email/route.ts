@@ -21,14 +21,14 @@ export async function POST(req: Request) {
 			port: 587,
 			secure: false,
 			auth: {
-				user: process.env.MJ_APIKEY_PUBLIC,
-				pass: process.env.MJ_APIKEY_PRIVATE,
+				user: process.env.NEXT_PUBLIC_MJ_APIKEY_PUBLIC,
+				pass: process.env.NEXT_PUBLIC_MJ_APIKEY_PRIVATE,
 			},
 		});
 
 		await transporter.sendMail({
 			from: `"Bröllopsformulär" <ann_136@hotmail.com>`,
-			to: "amynilsson93@gmail.com",
+			to: `${process.env.NEXT_PUBLIC_OSA_EMAIL}`,
 			subject: "Ny anmälan till bröllopet",
 			html: `
         <h2>Ny anmälan</h2>
