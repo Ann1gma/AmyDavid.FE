@@ -1,6 +1,5 @@
-import NavButton from "@/components/NavButton";
+import Block from "@/components/Block";
 import { TStartPage } from "@/types/startPage";
-import Image from "next/image";
 
 export default async function Home() {
 	const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
@@ -23,28 +22,9 @@ export default async function Home() {
 						<h2>{data.data.startPageSubTitle}</h2>
 					</div>
 					<div className="my-10 mx-8">
-						{data.data.startPagePosts?.map((post, index) => (
-							<div key={index} className="mb-20">
-								{post.blockTitle && <h3>{post.blockTitle}</h3>}
-								{post.blockSubtitle && <h4>{post.blockSubtitle}</h4>}
-								{post.blockText && <p>{post.blockText}</p>}
-								<div className="items-center justify-items-center">
-									{post.blockImageUrl && (
-										<Image
-											src={post.blockImageUrl}
-											alt={post.blockText || ""}
-											width={500}
-											height={500}
-										/>
-									)}
-								</div>
-								<div className="flex justify-center my-10">
-									{post.linkBtn && post.linkBtnText && (
-										<NavButton text={post.linkBtnText} url={post.linkBtn} />
-									)}
-								</div>
-							</div>
-						))}
+						{data.data.startPagePosts && (
+							<Block postData={data.data.startPagePosts} />
+						)}
 					</div>
 				</main>
 			)}
