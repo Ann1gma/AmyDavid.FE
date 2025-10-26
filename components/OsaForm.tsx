@@ -52,7 +52,7 @@ const OsaForm = () => {
 
 	const submitHandler: SubmitHandler<FormValues> = async (data) => {
 		try {
-			const res = await fetch("/api/send-email", {
+			const res = await fetch("/api/send-osa", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(data),
@@ -118,29 +118,35 @@ const OsaForm = () => {
 		<div className="flex flex-col gap-10">
 			<div className="flex flex-col items-center">
 				<h2>Anmälningsformulär</h2>
-				<div className="flex flex-row items-center gap-8 mt-4">
-					<button
-						onClick={() => handleNumOfGuest(-1)}
-						className="bg-amber-400 hover:bg-amber-300 px-4 py-2 rounded-2xl"
-					>
-						<FontAwesomeIcon
-							icon={faChevronDown}
-							style={{ color: "#3f3f3f" }}
-						/>
-					</button>
-					<p>{numOfGuests}</p>
+				<>
+					<p className="mt-8 text-base">Hur många är ni som kommer?</p>
+					<div className="flex flex-row items-center gap-8 mt-4">
+						<button
+							onClick={() => handleNumOfGuest(-1)}
+							className="bg-amber-400 hover:bg-amber-300 px-4 py-2 rounded-2xl"
+						>
+							<FontAwesomeIcon
+								icon={faChevronDown}
+								style={{ color: "#3f3f3f" }}
+							/>
+						</button>
+						<p>{numOfGuests}</p>
 
-					<button
-						onClick={() => handleNumOfGuest(+1)}
-						className="bg-amber-400 hover:bg-amber-300 px-4 py-2 rounded-2xl "
-					>
-						<FontAwesomeIcon icon={faChevronUp} style={{ color: "#3f3f3f" }} />
-					</button>
-				</div>
+						<button
+							onClick={() => handleNumOfGuest(+1)}
+							className="bg-amber-400 hover:bg-amber-300 px-4 py-2 rounded-2xl "
+						>
+							<FontAwesomeIcon
+								icon={faChevronUp}
+								style={{ color: "#3f3f3f" }}
+							/>
+						</button>
+					</div>
+				</>
 			</div>
 			<form
 				onSubmit={handleSubmit(submitHandler)}
-				className="flex flex-col gap-8 mb-20 items-center justify-items-center"
+				className="flex flex-col gap-8 mb-20 items-center justify-items-center w-[90%] md:w-full max-w-3xl mx-auto"
 			>
 				{guestsInfo.map((guest, index) => (
 					<div
