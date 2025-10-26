@@ -11,7 +11,7 @@ export default async function Home() {
 
 	const { data }: { data: TStartPage } = await res.json();
 
-	console.log("data: ", data);
+	console.log("data: ", data.data.startPagePosts);
 
 	return (
 		<div className="font-sans flex flex-col items-center">
